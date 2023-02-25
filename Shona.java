@@ -3,8 +3,22 @@ import java.util.*;
 
 public class Shona {
 
-    public static void main (String[] args){
+    private chapterOne c1;
+    private chapterTwo c2;
 
+    public Shona(){
+
+        this.c1 = new chapterOne();
+        this.c2 = new chapterTwo();
+
+    }
+
+    public static void main (String[] args){
+        Shona storyStart = new Shona();
+        storyStart.use();
+    }
+
+    public void use(){
         Scanner sc = new Scanner(System.in);
         int numericalCommand = 0;
         System.out.println("Chapter 1: The Escape.");
@@ -13,11 +27,11 @@ public class Shona {
         sc.nextLine();
 
         System.out.println("The year is 1479. The Kingdom of Thacia has begun a purge of all ethnic Shona within their kingdom. \n" +
-                    "The new king, Artan Surr has issued a decree, declaring that all non ethnic Thacians will be stripped of their rights and their liberties and all their possessions confiscated.\n" +
-                    "In the wake of this new decree, you have found yourself imprisoned after your families execution and the confiscation of your family's fortunes. \n" +
-                    "You awaken in a prison to the sound of a crash.");
+                "The new king, Artan Surr has issued a decree, declaring that all non ethnic Thacians will be stripped of their rights and their liberties and all their possessions confiscated.\n" +
+                "In the wake of this new decree, you have found yourself imprisoned after your families execution and the confiscation of your family's fortunes. \n" +
+                "You awaken in a prison to the sound of a crash.");
 
-        optionsCell();
+        c1.optionsCell();
 
         while (true){
 
@@ -42,13 +56,13 @@ public class Shona {
 
             }
             //prisonBreakDialogue put here.
-            prisonBreakDialogue();
+            c1.prisonBreakDialogue();
             break;
         }
 
         while (true) {
 
-            optionsCellRescue();
+            c1.optionsCellRescue();
             numericalCommand = sc.nextInt();
             switch (numericalCommand) {
                 case 1:
@@ -73,18 +87,18 @@ public class Shona {
                     System.out.println("Aureon: Well are you just going to stand there and look at me.");
                     break;
             }
-            
+
             //escapeCellDialogue();
-            escapeCellDialogue();
+            c1.escapeCellDialogue();
             break;
         }
-        
-            //escapeCellDialogue put here.
-            //escapeCellDialogue();
-            //prompt to speak to Aureon (escapeCellDialogueOptions)
-        
+
+        //escapeCellDialogue put here.
+        //escapeCellDialogue();
+        //prompt to speak to Aureon (escapeCellDialogueOptions)
+
         while (true){
-            escapeCellDialogueOptions();
+            c1.escapeCellDialogueOptions();
             numericalCommand = sc.nextInt();
             switch(numericalCommand){
 
@@ -113,23 +127,22 @@ public class Shona {
                     break;
 
                 default:
-                    return;
+                    System.out.println("Aureon: We're almost there.");
             }
 
             //put armoryConfrontation here.
-            armoryConfrontation();
+            c1.armoryConfrontation();
             break;
         }
 
         while (true){
             //start of the combat dialogue choices in front of armory.
-            armoryCombatDialogue();
+            c1.armoryCombatDialogue();
             numericalCommand = sc.nextInt();
             switch (numericalCommand){
                 case 1:
                     System.out.println("The guard charges you with his spear.");
                     System.out.println("You dodge his spear thrust and elbow him in the face.");
-                    System.out.println("The guard is stunned and you take the opportunity to elbow him in the face.");
                     System.out.println("The guard drops his spear and staggers to his feet.");
                     System.out.println("You pick up the spear and thrust it into his neck.");
                     System.out.println("The guard collapses in a puddle of blood.");
@@ -153,71 +166,53 @@ public class Shona {
                     System.out.println("The guards gesture for Aureon to stop.");
                     System.out.println("Aureon charges the two guards and skillfully disarms them before knocking them both out with the hilt of his sword.");
                     System.out.println("Aureon: I really have to do everything today, don't I.");
-                    System.out.println("Kira: Well, I don't have a weapon.");
+                    System.out.println("You: Well, I don't have a weapon.");
                     break;
 
                 default:
-                    return;
+                    System.out.println("You stand in shock, unable to move, as Aureon quickly dispatches the guards in front of you.");
+                    System.out.println("Aureon: Not like you to freeze up like that.");
+                    break;
             }
 
-            chapterOneFinalDialogue();
+            c1.armoryDialogue();
             break;
         }
 
+        while (true){
+            c1.outsidePrisonDialogue();
+            numericalCommand = sc.nextInt();
+            switch(numericalCommand){
+                case 1:
+                    System.out.println("You ignore the cries of the child and continue on to the main gate.");
+                    break;
+
+                case 2:
+                    System.out.println("You approach the child and offer your hand.");
+                    System.out.println("The child appears frightened and cowers at your presence.");
+                    System.out.println("The child continues to cry and flees at your presence.");
+                    System.out.println("Aureon: There's nothing we can do for this child. We need to continue.");
+                    break;
+
+                case 3:
+                    System.out.println("You approach the child and gesture to the house.");
+                    System.out.println("The child looks at the entrance of the house and shakes his head before sobbing.");
+                    System.out.println("You and Aureon enter the house and discover a grim sight.");
+                    System.out.println("The house is in shambles, the families belongings have all been smashed and scattered on the floor.");
+                    System.out.println("You delve deeper into the house and discover two bodies on the floor in front of a doorway.");
+                    System.out.println("A man and a woman huddled together on the floor. It appears they were executed by the Royal Army.");
+                    System.out.println("You remember the child suddenly and head outside to find them.");
+                    System.out.println("The child is gone and you are left wondering whether there was anything more you could have done.");
+                    break;
+
+                case 4:
+                    System.out.println("You do nothing and you continue to follow Aureon's lead.");
+            }
+
+            c1.postHouseConfrontation();
+
+        }
+
     }
-
-    public static void optionsCell(){
-        System.out.println("1. You investigate the commotion.");
-        System.out.println("2. You stay in your cell, waiting in anticipation.");
-        System.out.println("3. You call out to the guards and await a response");
-    }
-
-    public static void prisonBreakDialogue(){
-        System.out.println("You see a hooded figure approaching your cell.");
-        System.out.println("Your eyes widen in surprise.");
-        System.out.println("The figure looks at you solemnly.");
-    }
-
-    public static void optionsCellRescue(){
-        System.out.println("1. Aureon? What are you doing here?!");
-        System.out.println("2. Now what an unexpected surprise. I don't suppose you're the one to execute me.");
-        System.out.println("3. Sit in Silence.");
-    }
-
-    public static void escapeCellDialogue(){
-        System.out.println("You leave your cell and follow Aureon towards the hallway.");
-        System.out.println("Aureon: We need to head towards the main gate of the city. The whole city is in uproar. King Artan is still conducting his purge throughout the Kingdom.");
-        System.out.println("Aureon: I've managed to secure your gear, we can pick it up from the armory before we leave.");
-        System.out.println("You head towards the armory, following Aureon's direction.");
-    }
-
-    public static void escapeCellDialogueOptions(){
-        System.out.println ("1. How many are dead in the city?");
-        System.out.println ("2. You're risking a lot by saving me. Didn't you swear an oath to the king?");
-        System.out.println ("3. This is all pretty sudden, why is the king doing this? You're in the royal guard Aureon, you must have some idea.");
-        System.out.println ("4. Walk in Silence.");
-    }
-
-    public static void armoryConfrontation(){
-        System.out.println("You arrive at the armory and notice two guards standing at the front.");
-        System.out.println("The guards shout and point their weapons at you.");
-        System.out.println("The first guard shouts" + " It's Kira! Stop him.");
-    }
-
-    public static void armoryCombatDialogue(){
-        System.out.println("1. You charge the guards with Aureon.");
-        System.out.println("2. You cautiously wait, anticipating the guards reactions and what they will do.");
-        System.out.println("3. You wait for Aureon to do something.");
-    }
-
-    public static void chapterOneFinalDialogue(){
-        System.out.println("You and Aureon approach the armory. The glare of the sunlight temporarily blinds you as you opened the door.");
-        System.out.println("You look for your weapon and armour amongst the confiscated items.");
-        System.out.println("You find your sword amongst the weapon racks in the armory and your armour neatly placed in a chest.");
-        System.out.println("You fasten your armour, holster your sword and turn towards Aureon.");
-        System.out.println("Aureon hands you a hooded cloak and you both make your way out of the prison.");
-    }
-
-
 
 }
